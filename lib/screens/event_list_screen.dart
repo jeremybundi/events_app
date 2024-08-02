@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import '../models/event.dart';
 import 'event_details_screen.dart';
+import 'sign_in_screen.dart';
+import 'sign_up_screen.dart';
+import 'common_app_bar.dart';  // Import the CommonAppBar
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -45,9 +48,7 @@ class _EventListScreenState extends State<EventListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Event List'),
-      ),
+      appBar: CommonAppBar(),  
       body: FutureBuilder<List<Event>>(
         future: futureEvents,
         builder: (context, snapshot) {
@@ -64,7 +65,8 @@ class _EventListScreenState extends State<EventListScreen> {
               children: [
                 // Horizontal image carousel at the top
                 Container(
-                  height: 100, // Adjust height as needed
+                  height: 70,
+                  width: double.infinity, 
                   child: CarouselSlider.builder(
                     itemCount: carouselImages.length,
                     itemBuilder: (context, index, realIndex) {
@@ -103,6 +105,7 @@ class _EventListScreenState extends State<EventListScreen> {
     );
   }
 }
+
 class EventCard extends StatelessWidget {
   final Event event;
 
@@ -115,10 +118,9 @@ class EventCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Display event image with adjusted width and height
           Container(
-            height: 200, // Increased height
-            width: double.infinity,// Adjust width as needed (you can set a specific width if you prefer)
+            height: 200,
+            width: double.infinity,
             child: Image.network(
               event.imageUrl,
               fit: BoxFit.cover,
@@ -164,4 +166,3 @@ class EventCard extends StatelessWidget {
     );
   }
 }
-

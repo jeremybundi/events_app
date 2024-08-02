@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/event.dart';
+import 'common_app_bar.dart';  
 
 class EventDetailsScreen extends StatefulWidget {
   final Event event;
@@ -18,9 +19,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
     final event = widget.event;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(event.name),
-      ),
+      appBar: CommonAppBar(),  // Use the CommonAppBar here
       body: Padding(
         padding: EdgeInsets.all(10),
         child: Column(
